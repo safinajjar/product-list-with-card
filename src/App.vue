@@ -19,7 +19,7 @@ fetch('/data.json')
 </script>
 
 <template>
-  <main class="container md:flex md:mx-auto md:justify-between gap-12 py-12 px-10">
+  <main class="container md:flex md:mx-auto md:justify-between gap-12 py-12 px-8">
     <ShopProducts :products="products" />
     <ShopCart />
   </main>
