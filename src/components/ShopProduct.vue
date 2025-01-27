@@ -8,9 +8,11 @@ defineProps<{
 </script>
 
 <template>
-  <li class="mb-6">
+  <li>
     <div class="relative mb-7">
-      <div class="rounded-xl overflow-hidden">
+      <div
+        class="rounded-xl overflow-hidden border-2 border-transparent transition-[border] hover:border-red"
+      >
         <picture>
           <source :srcset="product.image.desktop" media="(min-width: 64rem)" />
           <source :srcset="product.image.tablet" media="(min-width: 48rem)" />

@@ -18,8 +18,9 @@ fetch('/data.json')
   })
 </script>
 
+<!-- change width of container on tablet -->
 <template>
-  <main class="container md:flex md:mx-auto md:justify-between gap-12 py-12 px-8 md:h-screen">
+  <main class="container items-start md:flex mx-auto gap-12 py-12 px-8">
     <ShopProducts :products="products" />
     <ShopCart />
   </main>
