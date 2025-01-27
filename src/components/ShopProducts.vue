@@ -1,17 +1,30 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineProps } from 'vue'
+import ShopProduct from './ShopProduct.vue'
+export type Product = {
+  id: number
+  image: {
+    thumbnail: string
+    mobile: string
+    tablet: string
+    desktop: string
+  }
+  name: string
+  category: string
+  price: number
+}
+
+defineProps<{
+  products: Product[]
+}>()
+</script>
 
 <template>
-  <h1>Deserts</h1>
+  <h1 class="text-5xl font-bold mb-8">Desserts</h1>
 
-  <div class="flex">
-    <div></div>
-  </div>
+  <ul class="flex flex-col">
+    <ShopProduct :product="product" v-for="product in products" :key="product.id" />
+  </ul>
 </template>
 
-<style scoped>
-h1 {
-  font-size: 1.7rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-</style>
+<style scoped></style>
