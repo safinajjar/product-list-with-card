@@ -19,14 +19,8 @@ fetch('/data.json')
 </script>
 
 <template>
-  <main class="container md:flex md:mx-auto md:justify-between gap-12 py-12 px-8">
+  <main class="container md:flex md:mx-auto md:justify-between gap-12 py-12 px-8 md:h-screen">
     <ShopProducts :products="products" />
     <ShopCart />
   </main>
 </template>
-
-<style scoped>
-main {
-  height: 100vh;
-}
-</style>

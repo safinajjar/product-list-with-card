@@ -20,11 +20,13 @@ defineProps<{
 </script>
 
 <template>
-  <h1 class="text-5xl font-bold mb-8">Desserts</h1>
+  <section class="products">
+    <h1 class="text-5xl font-bold mb-8">Desserts</h1>
 
-  <ul class="flex flex-col">
-    <ShopProduct :product="product" v-for="product in products" :key="product.id" />
-  </ul>
+    <ul class="flex flex-col">
+      <ShopProduct :product="product" v-for="product in products" :key="product.id" />
+    </ul>
+  </section>
 </template>
 
 <style scoped></style>
