@@ -4,7 +4,7 @@ import EmptyCartImg from '/images/illustration-empty-cart.svg'
 
 <template>
   <div
-    class="cart bg-white p-8 rounded flex items-center justify-center flex-col mt-8 md:mt-0 lg:min-w-[370px]"
+    class="cart bg-white p-8 rounded flex items-center justify-center flex-col mt-8 md:mt-0 lg:min-w-[20rem]"
   >
     <h2 class="text-red text-2xl self-start"><strong>Your Cart (0)</strong></h2>
     <img :src="EmptyCartImg" alt="Empty Cart" class="mb-2 mt-10" />

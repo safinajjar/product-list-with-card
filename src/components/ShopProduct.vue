@@ -16,7 +16,7 @@ defineProps<{
         <picture>
           <source :srcset="product.image.desktop" media="(min-width: 64rem)" />
           <source :srcset="product.image.tablet" media="(min-width: 48rem)" />
-          <img :src="product.image.mobile" :alt="product.name" class="object-cover" />
+          <img :src="product.image.mobile" :alt="product.name" class="object-cover w-full" />
         </picture>
       </div>
 
