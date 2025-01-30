@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import AddToCartBtn from './AddToCartBtn.vue'
-import type { Product } from './ShopProducts.vue'
+import type { Product } from '@/types'
 const productCounter = ref(0)
 
 const incrementProductCounter = () => {

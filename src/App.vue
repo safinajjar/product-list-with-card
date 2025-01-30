@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ShopCart from './components/ShopCart.vue'
+import ShopCart from './components/ShopCart/ShopCart.vue'
 import ShopProducts from './components/ShopProducts.vue'
 import { ref } from 'vue'
 

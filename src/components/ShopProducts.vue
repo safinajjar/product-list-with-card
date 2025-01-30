@@ -1,18 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import ShopProduct from './ShopProduct.vue'
-export type Product = {
-  id: number
-  image: {
-    thumbnail: string
-    mobile: string
-    tablet: string
-    desktop: string
-  }
-  name: string
-  category: string
-  price: number
-}
+import type { Product } from '@/types'
 
 defineProps<{
   products: Product[]
