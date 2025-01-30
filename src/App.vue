@@ -19,7 +19,7 @@ fetch('/data.json')
 </script>
 
 <template>
-  <main class="items-start lg:flex lg:max-w-[90rem] mx-auto gap-12 py-12 px-8">
+  <main class="mx-auto items-start gap-8 px-8 py-12 lg:flex lg:max-w-[90rem]">
     <ShopProducts :products="products" />
     <ShopCart />
   </main>
