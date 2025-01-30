@@ -19,7 +19,7 @@ const decrement = () => emit('decrement')
   <Transition name="fade-scale" mode="out-in">
     <div
       v-if="isProductCounterVisible"
-      class="bg-red border-red flex w-[170px] items-center justify-between rounded-2xl border-1 px-4 py-2 text-center font-semibold text-white"
+      class="bg-red border-red flex w-[170px] items-center justify-between rounded-3xl border-1 px-4 py-2 text-center font-[500] text-white"
     >
       <button type="button" class="counter--btn" @click="decrement">
         <svg
@@ -53,7 +53,7 @@ const decrement = () => emit('decrement')
     <button
       v-else
       type="button"
-      class="w-[170px] rounded-2xl border-1 bg-white px-4 py-2 font-semibold transition-all ease-in-out hover:cursor-pointer hover:bg-rose-100 active:scale-[1.1]"
+      class="hover:border-red hover:text-red w-[170px] rounded-3xl border-1 border-rose-300 bg-white px-4 py-2 font-[500] transition-all ease-in-out hover:cursor-pointer active:scale-[1.1]"
       @click="increment"
     >
       <div class="flex items-center justify-center text-center">
