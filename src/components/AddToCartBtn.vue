@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
+import RoundedButton from './RoundedButton/RoundedButton.vue'
 
 // props
 const props = defineProps<{
@@ -21,7 +22,7 @@ const decrement = () => emit('decrement')
       v-if="isProductCounterVisible"
       class="bg-red border-red flex w-[170px] items-center justify-between rounded-3xl border-1 px-4 py-2 text-center font-[500] text-white"
     >
-      <button type="button" class="counter--btn" @click="decrement">
+      <RoundedButton class="counter--btn" @click="decrement">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="10"
@@ -32,9 +33,9 @@ const decrement = () => emit('decrement')
         >
           <path fill="#fff" d="M0 .375h10v1.25H0V.375Z" />
         </svg>
-      </button>
+      </RoundedButton>
       {{ productCounter }}
-      <button type="button" class="counter--btn" @click="increment">
+      <RoundedButton class="counter--btn" @click="increment">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="10"
@@ -48,8 +49,10 @@ const decrement = () => emit('decrement')
             d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
           />
         </svg>
-      </button>
+      </RoundedButton>
     </div>
+
+    <!-- this needs to refactored / use a component -->
     <button
       v-else
       type="button"
@@ -68,7 +71,7 @@ const decrement = () => emit('decrement')
 @reference "tailwindcss";
 
 .counter--btn {
-  @apply flex h-[20px] w-[20px] cursor-pointer content-center items-center rounded-full border-1 border-white transition-all hover:bg-white active:scale-[1.1];
+  @apply border-white hover:bg-white;
   &:hover > svg > path {
     fill: var(--color-red);
   }
