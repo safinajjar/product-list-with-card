@@ -4,8 +4,6 @@ import EmptyCartImg from '/images/illustration-empty-cart.svg'
 import ShopCartItem from './ShopCartItem.vue'
 import type { CartItem } from '@/types'
 
-const cartItems = ref<CartItem[]>([])
-
 const cartItem = ref<CartItem>({
   id: 1,
   name: 'Product-Name',
@@ -13,6 +11,7 @@ const cartItem = ref<CartItem>({
   quantity: 1,
   category: 'Category',
 })
+const cartItems = ref<CartItem[]>([cartItem.value])
 </script>
 
 <template>

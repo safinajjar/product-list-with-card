@@ -11,25 +11,24 @@ const total = computed(() => props.cartItem.price * props.cartItem.quantity)
 
 <template>
   <article class="cart-item">
-    <header class="cart-item-header">
-      <h2 class="product-name">{{ cartItem.name }}</h2>
-    </header>
-
     <section class="cart-item-details">
-      <dl>
-        <dt class="hidden">Quantity</dt>
-        <dd>{{ cartItem.quantity }}x</dd>
+      <dl class="flex flex-col">
+        <dt class="hidden">Name</dt>
+        <dd class="mb-2 text-sm font-semibold">{{ cartItem.name }}</dd>
 
-        <dt>Unit Price</dt>
-        <dd>{{ cartItem.price }}</dd>
+        <div class="flex">
+          <dt class="hidden">Quantity</dt>
+          <dd class="text-red me-3 text-sm font-semibold">{{ cartItem.quantity }}x</dd>
 
-        <dt>Total</dt>
-        <dd>{{ total }}</dd>
+          <dt class="hidden">Unit Price</dt>
+          <dd class="me-2 text-sm text-rose-500">@ ${{ cartItem.price }}</dd>
+
+          <dt class="hidden">Total</dt>
+          <dd class="text-sm font-semibold text-rose-500">${{ total }}</dd>
+          <button type="button" aria-label="Remove item from cart">Remove</button>
+        </div>
       </dl>
     </section>
-
-    <footer class="cart-item-actions">
-      <button type="button" aria-label="Remove item from cart">Remove</button>
-    </footer>
+    <hr />
   </article>
 </template>
