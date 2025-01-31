@@ -1,28 +1,22 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { useCartStore } from '@/stores/cart'
 import RoundedButton from './RoundedButton/RoundedButton.vue'
 
-// props
-const props = defineProps<{
-  productCounter: number
+defineProps<{
+  productId: number
 }>()
 
-// computed
-const isProductCounterVisible = computed(() => props.productCounter > 0)
-
-// emits
-const emit = defineEmits(['increment', 'decrement'])
-const increment = () => emit('increment')
-const decrement = () => emit('decrement')
+const { isItemInCart, decreaseQuantity, increaseQuantity, getItemQuantity, addToCart } =
+  useCartStore()
 </script>
 
 <template>
   <Transition name="fade-scale" mode="out-in">
     <div
-      v-if="isProductCounterVisible"
+      v-if="isItemInCart(productId)"
       class="bg-red border-red flex w-[170px] items-center justify-between rounded-3xl border-1 px-4 py-2 text-center font-[500] text-white"
     >
-      <RoundedButton class="counter--btn" @click="decrement">
+      <RoundedButton class="counter--btn" @click="decreaseQuantity(productId)">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="10"
@@ -34,8 +28,8 @@ const decrement = () => emit('decrement')
           <path fill="#fff" d="M0 .375h10v1.25H0V.375Z" />
         </svg>
       </RoundedButton>
-      {{ productCounter }}
-      <RoundedButton class="counter--btn" @click="increment">
+      {{ getItemQuantity(productId) }}
+      <RoundedButton class="counter--btn" @click="increaseQuantity(productId)">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="10"
@@ -57,7 +51,7 @@ const decrement = () => emit('decrement')
       v-else
       type="button"
       class="hover:border-red hover:text-red w-[170px] rounded-3xl border-1 border-rose-300 bg-white px-4 py-2 font-[500] transition-all ease-in-out hover:cursor-pointer active:scale-[1.1]"
-      @click="increment"
+      @click="addToCart(productId)"
     >
       <div class="flex items-center justify-center text-center">
         <img src="/images/icon-add-to-cart.svg" alt="basket" class="me-1.5" />

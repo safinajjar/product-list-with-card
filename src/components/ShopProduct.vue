@@ -1,23 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import AddToCartBtn from './AddToCartBtn.vue'
 import type { Product } from '@/types'
-const productCounter = ref(0)
-
-const incrementProductCounter = () => {
-  productCounter.value++
-}
-
-const decrementProductCounter = () => {
-  if (productCounter.value === 0) {
-    productCounter.value = 0
-    return
-  }
-  productCounter.value--
-}
-
-console.log(productCounter.value)
-
 defineProps<{
   product: Product
 }>()
@@ -35,10 +18,8 @@ defineProps<{
       </div>
 
       <AddToCartBtn
+        :productId="product.id"
         class="absolute bottom-0 left-[50%] translate-x-[-50%] translate-y-[50%]"
-        :productCounter
-        @increment="incrementProductCounter"
-        @decrement="decrementProductCounter"
       />
     </div>
 

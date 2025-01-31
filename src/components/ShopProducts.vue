@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
 import ShopProduct from './ShopProduct.vue'
 import type { Product } from '@/types'
 

@@ -1,21 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import EmptyCartImg from '/images/illustration-empty-cart.svg'
+import { useCartStore } from '@/stores/cart'
 import ShopCartItem from './ShopCartItem.vue'
-import type { CartItem } from '@/types'
+import EmptyCartImg from '/images/illustration-empty-cart.svg'
+import { storeToRefs } from 'pinia'
 
-const cartItem = ref<CartItem>({
-  id: 1,
-  name: 'Product-Name',
-  price: 7.54,
-  quantity: 1,
-  category: 'Category',
-})
-const cartItems = ref<CartItem[]>([cartItem.value, cartItem.value])
-
-const total = computed(() => {
-  return cartItems.value.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)
-})
+const cartStore = useCartStore()
+const { cartItems, getTotalPrice, getTotalCount } = storeToRefs(cartStore)
 </script>
 
 <template>
@@ -24,14 +14,15 @@ const total = computed(() => {
     :class="{ 'items-center justify-center': cartItems.length === 0 }"
   >
     <h2 class="text-red self-start text-2xl" :class="{ 'mb-7': cartItems.length > 0 }">
-      <strong>Your Cart ({{ cartItems.length }})</strong>
+      <strong>Your Cart ({{ getTotalCount }})</strong>
     </h2>
 
     <template v-if="cartItems.length > 0">
       <ShopCartItem v-for="item in cartItems" :key="item.id" :cartItem="item" />
       <p class="mt-2 flex items-center justify-between font-[500] text-rose-900">
         <span class="text-sm">Order Total</span>
-        <strong class="text-2xl text-rose-900">${{ total }}</strong>
+
+        <strong class="text-2xl text-rose-900">{{ getTotalPrice }}</strong>
       </p>
 
       <p

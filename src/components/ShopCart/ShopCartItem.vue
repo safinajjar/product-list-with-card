@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import type { CartItem, Product } from '@/types'
-import { computed } from 'vue'
+import type { CartItem } from '@/types'
 import RoundedButton from '../RoundedButton/RoundedButton.vue'
+import { useCartStore } from '@/stores/cart'
 
 const props = defineProps<{
   cartItem: CartItem
 }>()
 
-const total = computed(() => props.cartItem.price * props.cartItem.quantity)
-
-defineEmits(['removeItem'])
+const { getTotalPriceOfItem } = useCartStore()
 </script>
 
 <template>
@@ -26,7 +24,7 @@ defineEmits(['removeItem'])
         <dd class="me-2 text-sm text-rose-500">@ ${{ cartItem.price }}</dd>
 
         <dt class="hidden">Total</dt>
-        <dd class="text-sm font-semibold text-rose-500">${{ total }}</dd>
+        <dd class="text-sm font-semibold text-rose-500">{{ getTotalPriceOfItem(cartItem.id) }}</dd>
         <RoundedButton class="remove-item" aria-label="Remove item from cart">
           <svg
             xmlns="http://www.w3.org/2000/svg"

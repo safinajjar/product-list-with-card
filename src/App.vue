@@ -1,21 +1,14 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import ShopCart from './components/ShopCart/ShopCart.vue'
 import ShopProducts from './components/ShopProducts.vue'
-import { ref } from 'vue'
+import { useProductsStore } from './stores/product'
 
-const products = ref([])
+const productsStore = useProductsStore()
+const { fetchProducts } = useProductsStore()
+const { products } = storeToRefs(productsStore)
 
-// fetch products from data.json
-fetch('/data.json')
-  .then((res) => {
-    return res.json()
-  })
-  .then((data) => {
-    products.value = data
-  })
-  .catch((err) => {
-    console.error(err)
-  })
+fetchProducts()
 </script>
 
 <template>
