@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import ShopCart from './components/ShopCart/ShopCart.vue'
-import ShopProducts from './components/ShopProducts.vue'
+import ShopProducts from './components/Products/ShopProducts.vue'
 import { useProductsStore } from './stores/product'
 
 const productsStore = useProductsStore()

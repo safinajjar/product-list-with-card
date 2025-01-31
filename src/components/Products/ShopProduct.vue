@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
 import AddToCartBtn from './AddToCartBtn.vue'
 import type { Product } from '@/types'
 import { useCartStore } from '@/stores/cart'

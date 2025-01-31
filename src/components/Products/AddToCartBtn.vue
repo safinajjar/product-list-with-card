@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useCartStore } from '@/stores/cart'
-import RoundedButton from './RoundedButton/RoundedButton.vue'
+import RoundedButton from '../RoundedButton/RoundedButton.vue'
 
 defineProps<{
   productId: number
