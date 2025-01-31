@@ -3,11 +3,11 @@ import type { CartItem } from '@/types'
 import RoundedButton from '../RoundedButton/RoundedButton.vue'
 import { useCartStore } from '@/stores/cart'
 
-const props = defineProps<{
+defineProps<{
   cartItem: CartItem
 }>()
 
-const { getTotalPriceOfItem } = useCartStore()
+const { getTotalPriceOfItem, removeItem } = useCartStore()
 </script>
 
 <template>
@@ -25,7 +25,11 @@ const { getTotalPriceOfItem } = useCartStore()
 
         <dt class="hidden">Total</dt>
         <dd class="text-sm font-semibold text-rose-500">{{ getTotalPriceOfItem(cartItem.id) }}</dd>
-        <RoundedButton class="remove-item" aria-label="Remove item from cart">
+        <RoundedButton
+          class="remove-item"
+          aria-label="Remove item from cart"
+          @click="removeItem(cartItem.id)"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="10"

@@ -1,15 +1,26 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import AddToCartBtn from './AddToCartBtn.vue'
 import type { Product } from '@/types'
-defineProps<{
+import { useCartStore } from '@/stores/cart'
+import { computed } from 'vue'
+const props = defineProps<{
   product: Product
 }>()
-</script>
 
+const { isItemInCart } = useCartStore()
+
+const shopProductBorder = computed(() => {
+  return isItemInCart(props.product.id) ? 'border-red' : 'border-transparent'
+})
+</script>
 <template>
   <li>
     <div class="shopProduct relative mb-7">
-      <div class="overflow-hidden rounded-xl border-2 border-transparent transition-[border]">
+      <div
+        class="overflow-hidden rounded-xl border-2 transition-[border]"
+        :class="shopProductBorder"
+      >
         <picture>
           <source :srcset="product.image.desktop" media="(min-width: 64rem)" />
           <source :srcset="product.image.tablet" media="(min-width: 48rem)" />
@@ -35,8 +46,8 @@ defineProps<{
 
 <style scoped>
 .shopProduct:hover > div,
-.shopProduct:has(button:hover),
-.shopProduct:has(button:focus) {
+.shopProduct:has(button:hover) > div,
+.shopProduct:has(button:focus) > div {
   border-color: var(--color-red);
 }
 </style>
