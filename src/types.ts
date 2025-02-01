@@ -12,3 +12,7 @@ export interface Product {
 }
 
 export type CartItem = Omit<Product, 'image'> & { quantity: number }
+
+export type OrderItem = CartItem & {
+  thumbnail: string
+}

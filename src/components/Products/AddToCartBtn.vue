@@ -50,7 +50,7 @@ const { isItemInCart, decreaseQuantity, increaseQuantity, getItemQuantity, addTo
     <button
       v-else
       type="button"
-      class="hover:border-red hover:text-red w-[170px] rounded-3xl border-1 border-rose-300 bg-white px-4 py-2 font-[500] transition-all ease-in-out hover:cursor-pointer active:scale-[1.1]"
+      class="hover:border-red hover:text-red w-[170px] rounded-3xl border-1 border-rose-300 bg-white px-4 py-2 font-[500] transition-all ease-in-out active:scale-[1.1]"
       @click="addToCart(productId)"
     >
       <div class="flex items-center justify-center text-center">

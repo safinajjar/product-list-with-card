@@ -5,7 +5,15 @@ import EmptyCartImg from '/images/illustration-empty-cart.svg'
 import { storeToRefs } from 'pinia'
 
 const cartStore = useCartStore()
+const { setOrderItems } = cartStore
 const { cartItems, getTotalPrice, getTotalCount } = storeToRefs(cartStore)
+
+const emit = defineEmits(['openConfirmationModal'])
+
+const handleConfirmOrder = () => {
+  setOrderItems(cartItems.value)
+  emit('openConfirmationModal')
+}
 </script>
 
 <template>
@@ -47,9 +55,10 @@ const { cartItems, getTotalPrice, getTotalCount } = storeToRefs(cartStore)
         <span class="ms-2">This is a <strong>carbon-neutral</strong> delivery</span>
       </p>
 
-      <!-- this needs to refactored / use a component -->
+      <!-- this needs to be refactored / use a component -->
       <button
-        class="bg-red border-red w-full cursor-pointer rounded-3xl border-1 px-4 py-3 text-center text-sm font-[500] text-white transition-all duration-100 active:scale-[1.07]"
+        class="bg-red border-red w-full rounded-3xl border-1 px-4 py-3 text-center text-sm font-[500] text-white transition-all duration-100 active:scale-[1.07]"
+        @click="handleConfirmOrder"
       >
         Confirm Order
       </button>

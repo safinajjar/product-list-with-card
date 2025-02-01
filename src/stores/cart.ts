@@ -1,10 +1,11 @@
-import type { CartItem } from '@/types'
+import type { CartItem, OrderItem } from '@/types'
 import { defineStore, storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
 import { useProductsStore } from './product'
 
 export const useCartStore = defineStore('cart', () => {
   const cartItems = ref<CartItem[]>([])
+  const orderItems = ref<OrderItem[]>([])
 
   const isItemInCart = (productId: number) => {
     return cartItems.value.some((item) => item.id === productId)
@@ -71,8 +72,24 @@ export const useCartStore = defineStore('cart', () => {
     return `$${cartItems.value.reduce((total, item) => total + item.price * item.quantity, 0)}`
   })
 
+  const setOrderItems = (cartItems: CartItem[]) => {
+    const productsStore = useProductsStore()
+    const { products } = storeToRefs(productsStore)
+    orderItems.value = []
+
+    cartItems.map((item) => {
+      const product = products.value.find((product) => product.id === item.id)
+
+      orderItems.value.push({
+        ...item,
+        thumbnail: product?.image.thumbnail!,
+      })
+    })
+  }
+
   return {
     cartItems,
+    orderItems,
     addToCart,
     increaseQuantity,
     decreaseQuantity,
@@ -82,5 +99,6 @@ export const useCartStore = defineStore('cart', () => {
     getTotalPrice,
     isItemInCart,
     getItemQuantity,
+    setOrderItems,
   }
 })

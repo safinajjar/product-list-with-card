@@ -25,9 +25,17 @@
   --color-rose-900: hsl(14, 65%, 9%);
 }
 
-body {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  line-height: 1.5;
-  @apply scroll-smooth bg-rose-50 text-rose-900 antialiased;
+:root {
+  @apply font-display scroll-smooth bg-rose-50 text-[1rem]/[1.5] text-rose-900 antialiased;
+  &:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  p {
+    @apply text-rose-500;
+  }
 }
