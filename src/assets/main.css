@@ -25,17 +25,78 @@
   --color-rose-900: hsl(14, 65%, 9%);
 }
 
-:root {
-  @apply font-display scroll-smooth bg-rose-50 text-[1rem]/[1.5] text-rose-900 antialiased;
-  &:has(dialog[open]) {
-    overflow: hidden;
+/* reset */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
-}
 
-button {
-  @apply cursor-pointer;
-}
+  * {
+    margin: 0;
+  }
 
-p {
-  @apply text-rose-500;
+  body {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  #root,
+  #__next {
+    isolation: isolate;
+  }
+
+  :root {
+    @apply font-display scroll-smooth bg-rose-50 text-[1rem]/[1.5] text-rose-900;
+    &:has(dialog[open]) {
+      overflow: hidden;
+    }
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  p {
+    @apply text-rose-500;
+  }
 }
