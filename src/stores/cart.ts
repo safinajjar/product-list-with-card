@@ -2,10 +2,16 @@ import type { CartItem, OrderItem } from '@/types'
 import { defineStore, storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
 import { useProductsStore } from './product'
+import formatPrice from '@/utils/currency'
 
 export const useCartStore = defineStore('cart', () => {
   const cartItems = ref<CartItem[]>([])
   const orderItems = ref<OrderItem[]>([])
+
+  const $reset = () => {
+    cartItems.value = []
+    orderItems.value = []
+  }
 
   const isItemInCart = (productId: number) => {
     return cartItems.value.some((item) => item.id === productId)
@@ -59,7 +65,7 @@ export const useCartStore = defineStore('cart', () => {
   const getTotalPriceOfItem = (productId: number) => {
     const item = cartItems.value.find((item) => item.id === productId)
     if (item) {
-      return `$${item.price * item.quantity}`
+      return formatPrice(item.price * item.quantity)
     }
     return 0
   }
@@ -69,7 +75,9 @@ export const useCartStore = defineStore('cart', () => {
   })
 
   const getTotalPrice = computed(() => {
-    return `$${cartItems.value.reduce((total, item) => total + item.price * item.quantity, 0)}`
+    return formatPrice(
+      cartItems.value.reduce((total, item) => total + item.price * item.quantity, 0),
+    )
   })
 
   const setOrderItems = (cartItems: CartItem[]) => {
@@ -83,6 +91,7 @@ export const useCartStore = defineStore('cart', () => {
       orderItems.value.push({
         ...item,
         thumbnail: product?.image.thumbnail!,
+        totalPrice: item.price * item.quantity,
       })
     })
   }
@@ -100,5 +109,6 @@ export const useCartStore = defineStore('cart', () => {
     isItemInCart,
     getItemQuantity,
     setOrderItems,
+    $reset,
   }
 })

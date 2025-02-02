@@ -30,12 +30,12 @@
   &:has(dialog[open]) {
     overflow: hidden;
   }
+}
 
-  button {
-    @apply cursor-pointer;
-  }
+button {
+  @apply cursor-pointer;
+}
 
-  p {
-    @apply text-rose-500;
-  }
+p {
+  @apply text-rose-500;
 }

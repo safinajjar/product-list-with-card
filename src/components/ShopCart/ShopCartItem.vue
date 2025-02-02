@@ -2,6 +2,7 @@
 import type { CartItem } from '@/types'
 import RoundedButton from '../RoundedButton/RoundedButton.vue'
 import { useCartStore } from '@/stores/cart'
+import formatPrice from '@/utils/currency'
 
 defineProps<{
   cartItem: CartItem
@@ -21,7 +22,7 @@ const { getTotalPriceOfItem, removeItem } = useCartStore()
         <dd class="text-red me-3 text-sm font-semibold">{{ cartItem.quantity }}x</dd>
 
         <dt class="hidden">Unit Price</dt>
-        <dd class="me-2 text-sm text-rose-500">@ ${{ cartItem.price }}</dd>
+        <dd class="me-2 text-sm text-rose-500">@ {{ formatPrice(cartItem.price) }}</dd>
 
         <dt class="hidden">Total</dt>
         <dd class="text-sm font-semibold text-rose-500">{{ getTotalPriceOfItem(cartItem.id) }}</dd>
